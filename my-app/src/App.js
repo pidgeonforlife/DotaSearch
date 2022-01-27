@@ -1,23 +1,19 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [searchText, setSearchText] = useState("");
+  const API_KEY = "928BF6B809AF9C4C09EC4B6E28A030D9";
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='container'>
+        <h5>Dota 2 Player Search</h5>
+        <input type='text' onChange={e => setSearchText(e.target.value)}></input>
+        <button>Search for Player</button>
+      </div>
     </div>
   );
 }
