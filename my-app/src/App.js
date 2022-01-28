@@ -5,7 +5,12 @@ import './App.css';
 
 function App() {
   const [searchText, setSearchText] = useState("");
-  const [playerData, setPlayerData] = useState({});
+  const [playerData, setPlayerData] = useState({
+    player_id: "",
+    name: "",
+    img: "",
+    steamid: "",
+  });
   const API_KEY = "212d088e-95ed-45a9-a37f-14e4ad6bdb29";
   
   function searchForPlayer(event) {
@@ -14,11 +19,16 @@ function App() {
     //Handle the API call
     axios.get(APICallString).then(function (response) {
     //Success
-      setPlayerData(response.data);
+      setPlayerData({
+        player_id: searchText,
+        name: response.data.profile.personaname,
+        steamid: response.data.profile.steamid,
+        img: response.data.profile.avatar,
+      });
+      console.log(response);
     }).catch(function (error) {
     //Error
       console.log(error);
-    console.log(error);
     });
   }
 
@@ -30,7 +40,13 @@ function App() {
         <input type='text' onChange={e => setSearchText(e.target.value)}></input>
         <button onClick={e => searchForPlayer(e)}>Search for Player</button>
       </div>
-      {JSON.stringify(playerData) != '{}' ? <><p>We have player data.</p></> 
+      {JSON.stringify(playerData) != '{}' ? 
+      <>
+        <p>{playerData.player_id}</p>
+        <p>Name: {playerData.name}</p>
+        <p>SteamID: {playerData.steamid}</p>
+        <img src={playerData.img} />
+      </>
       : 
       <><p>No player data.</p></>
       }
