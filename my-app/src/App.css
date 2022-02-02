@@ -1,32 +1,4 @@
-.App {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  background: #172935;
-  height: 100vh;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-}
-
-input {
-  background: #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: none;
-  border-radius: 8px;
-  width: 19rem;
-  height: 1.9rem;
-  margin-top: 60px;
-}
-
-img {
-  width: 20rem;
+.homeFooter {
+  width: 100%;
+  color: black;
 }
