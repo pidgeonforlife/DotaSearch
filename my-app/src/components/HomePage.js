@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './HomePage.css';
 
+
 function HomePage() {
   const [searchText, setSearchText] = useState("");
   const [playerData, setPlayerData] = useState({
@@ -9,6 +10,8 @@ function HomePage() {
     name: "",
     img: "",
     steamid: "",
+    rankImg: "",
+    lastLogin: "",
   });
   const API_KEY = "212d088e-95ed-45a9-a37f-14e4ad6bdb29";
 
@@ -24,6 +27,8 @@ function HomePage() {
         name: response.data.profile.personaname,
         steamid: response.data.profile.steamid,
         img: response.data.profile.avatar,
+        rankImg: response.data.rank_tier,
+        lastLogin: response.data.profile.last_login,
       });
       console.log(response);
     }).catch(function (error) {
@@ -42,18 +47,26 @@ function HomePage() {
           <button id='button2'>Profile</button>
         </div>
       </div>
+      <div className='statsContainer'>
       {JSON.stringify(playerData) != '{}' ? 
       <>
-        <p>{playerData.player_id}</p>
-        <p>Name: {playerData.name}</p>
-        <p>SteamID: {playerData.steamid}</p>
+        <div className='nameRankContainer'>
         <img src={playerData.img} />
-
-
+          <div className='wrapNameRank'>
+            <p>{playerData.name}</p>
+            <p>{playerData.rankImg}</p>
+          </div>
+        </div>
+        <hr />
+        <div className='additionalInfoContainer'>
+          <p>Account ID: {playerData.player_id}</p>
+          <p>Last Login: {playerData.lastLogin}</p>
+        </div>
       </>
       : 
       <><p>No player data.</p></>
       }
+      </div>
 
     </div>
   );

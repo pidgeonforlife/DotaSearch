@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import './HomePage.css';
 
-function StatsPage() {
+function StatsPage({ match, history }) {
+    const [playerData, setPlayerData] = useState(Object);
+    const [loading, setLoading] = useState(0);
+
+    useEffect(() => {
+        async function loadData() {
+            setLoading(1);
+            const res = await "https://api.opendota.com/api/players/"
+                .get(`/playerData/${match.params.id}`)
+                .catch((e) => alert("No workie!"));
+
+            if (res && res.data) {
+                setPlayerData(res.data);
+            }
+            setLoading(0);
+        }
+        loadData();
+    }, []);
+
     return (
         <div className='Stats'>
             <div className='statsContainer'>

@@ -1,3 +1,9 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+
 .App {
     display: flex;
     justify-content: center;
@@ -6,6 +12,7 @@
     align-items: center;
     background: #172935;
     height: 100vh;
+    width: 100%;
   }
   
   .container {
@@ -98,6 +105,8 @@
     justify-content: center;
     flex-direction: column;
     margin-left: 33px;
+    margin-bottom: 10px;
+    gap: 10px;
 
   }
 
@@ -117,5 +126,7 @@
 
   hr {
     width: 80%;
-    margin-top: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-self: center;
   }
