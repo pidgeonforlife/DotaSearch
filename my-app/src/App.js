@@ -12,10 +12,11 @@ function App() {
     steamid: "",
   });
   const API_KEY = "212d088e-95ed-45a9-a37f-14e4ad6bdb29";
-  
-  function searchForPlayer(event) {
+
+    function searchForPlayer(event) {
     //Set up the correct API call
     var APICallString = "https://api.opendota.com/api/players/" + searchText + "?api_key=" + API_KEY;
+    
     //Handle the API call
     axios.get(APICallString).then(function (response) {
     //Success
@@ -32,13 +33,12 @@ function App() {
     });
   }
 
-
   return (
     <div className="App">
       <div className='container'>
-        <h5>Dota 2 Player Search</h5>
+        <img className='dotaImage' src='./dota2.png' />
         <input type='text' onChange={e => setSearchText(e.target.value)}></input>
-        <button onClick={e => searchForPlayer(e)}>Search for Player</button>
+        <button onClick={e => searchForPlayer(e)}>Matches</button>
       </div>
       {JSON.stringify(playerData) != '{}' ? 
       <>
@@ -46,10 +46,13 @@ function App() {
         <p>Name: {playerData.name}</p>
         <p>SteamID: {playerData.steamid}</p>
         <img src={playerData.img} />
+
+
       </>
       : 
       <><p>No player data.</p></>
       }
+
     </div>
   );
 }
