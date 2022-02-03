@@ -13,6 +13,9 @@ function HomePage() {
     rankImg: "",
     lastLogin: "",
   });
+  const [showResults, setShowResults] = React.useState(false)
+  const onClick = () => setShowResults(true)
+
   const API_KEY = "212d088e-95ed-45a9-a37f-14e4ad6bdb29";
 
     function searchForPlayer(event) {
@@ -43,7 +46,10 @@ function HomePage() {
         <img className='dotaImage' src='./dota2.png' />
         <input type='text' onChange={e => setSearchText(e.target.value)}></input>
         <div className='buttonContainer'>
-          <button id='button1' onClick={e => searchForPlayer(e)}>Matches</button>
+          <button id='button1' onClick={e => {
+            searchForPlayer(e)
+            onClick()
+            }}>Matches</button>
           <button id='button2'>Profile</button>
         </div>
       </div>
